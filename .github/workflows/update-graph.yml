@@ -10,12 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Generate activity-graph.svg
-        uses: Ashutosh00710/github-readme-activity-graph-action@v1.1.1
-        with:
-          username: vincentdchps
-          options: theme=gotham&hide_border=true
-          output_path: dist/activity-graph.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p dist
+          curl --fail --silent --show-error --location \
+            "https://github-readme-activity-graph.vercel.app/graph?username=vincentdchps&theme=gotham&hide_border=true" \
+            --output dist/activity-graph.svg
 
       - name: Push to output branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
